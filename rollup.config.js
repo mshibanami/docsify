@@ -41,7 +41,7 @@ const { homepage, license, version } = JSON.parse(
 );
 const baseConfig = {
   output: {
-    format: 'iife',
+    format: 'esm',
   },
   plugins: [
     resolve(),
@@ -80,7 +80,8 @@ const bundleConfigs = [];
     output: {
       ...baseConfig.output,
       banner,
-      file: path.join(outputDir, `${outputName}.min.js`),
+      dir: outputDir,
+      entryFileNames: `${outputName}.min.js`,
       sourcemap: true,
     },
     plugins: [
@@ -98,7 +99,8 @@ const bundleConfigs = [];
     output: {
       ...baseConfig.output,
       banner,
-      file: path.join(outputDir, `${outputName}.js`),
+      dir: outputDir,
+      entryFileNames: `${outputName}.js`,
     },
     plugins: [
       ...baseConfig.plugins,
